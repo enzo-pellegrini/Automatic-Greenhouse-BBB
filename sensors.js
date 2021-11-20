@@ -1,5 +1,11 @@
 const { exec } = require("child_process");
 
+exports.sensors = {
+  temperature: 1,
+  humidity: 3,
+  light: 3
+}
+
 exports.readSensors = () => {
     let temp;
     let hum;
@@ -34,6 +40,6 @@ exports.readSensors = () => {
     return {
         temperature: temp,
         humidity: hum,
-        brightness: bright
+        light: bright
     };
 }
