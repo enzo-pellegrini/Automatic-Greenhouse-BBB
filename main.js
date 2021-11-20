@@ -7,9 +7,10 @@ const {sensors } = require("./sensors")
 
 
 let app = express()
-const server = http.createServer(app);
-const { Server } = require('socket.io');
-const io = new Server(server, {
+const server = http.Server(app);
+
+const io = require('socket.io')(server, {
+// const io = new Server(server, {
   cors: {
     origin: "*", 
     methods: ['GET', 'POST']
@@ -17,12 +18,15 @@ const io = new Server(server, {
 });
 
 
-setInterval(() => {
-  io.emit("sensorData", sensors)
-}, 1000);
+
 
 app.use(cors())
 
 app.use('/api', api);
 
-app.listen(8000, () => console.log('app running'))
+app.listen(8000, () => {
+  setInterval(() => {
+    io.emit("sensorData", sensors)
+  }, 1000);
+  console.log('app running')
+})
