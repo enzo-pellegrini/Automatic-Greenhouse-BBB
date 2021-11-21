@@ -1,5 +1,4 @@
 var state = {
-  enabled: false,
   heater: false,
   window: false,
   light: 50
@@ -11,7 +10,7 @@ const { exec } = require("child_process");
 
 
 let setWindow = (value) => {
-  exec(BASE_PATH+'servo.out '+ (value ? 100 : 0), (error, stdout, stderr) => {
+  exec(BASE_PATH+'servo '+ (value ? 100 : 0), (error, stdout, stderr) => {
     if(error) {
       console.log('${error.message}');
       return;
@@ -27,7 +26,7 @@ let setWindow = (value) => {
 }
 
 let setLight = (value) => {
-  exec(BASE_PATH+'light_actuator.out '+value, (error, stdout, stderr) => {
+  exec(BASE_PATH+'pwm '+value, (error, stdout, stderr) => {
     if(error) {
       console.log('${error}');
       return;
@@ -52,7 +51,7 @@ let lightMod = (mod) => {
 }
 
 let setHeater = (value) => {
-  exec(`${BASE_PATH}heater.out ${value?1:0}`, (error, stdout, stderr) => {
+  exec(`${BASE_PATH}digital ${value?1:0}`, (error, stdout, stderr) => {
     if(error){
         console.log('${error}');
         return;
@@ -60,7 +59,6 @@ let setHeater = (value) => {
     if(stderr){
         console.log('${stderr}');
     }
-    console.log(`changing heater to ${value}`);
   });
   console.log(`changing heater to ${value}`);
 }
@@ -72,16 +70,17 @@ let reset = () => {
 }
 
 let handleChange = (newState) => {
-  for (let k in state) {
+  for (let k in newState) {
     if (newState[k] != state[k]) {
-      console.log(`${k} changed to ${newState[k]}`);
+      console.log(`${k} set to ${newState[k]}`);
       state[k] = newState[k];
+
+      switch (k) {
+        case 'window': setWindow(state[k]); break;
+        case 'heater': setHeater(state[k]); break;
+        case 'light': setLight(state[k]); break;
+      }
     }
-  }
-  if (state.enabled) {
-    setWindow(newState.window);
-    setHeater(newState.heater);
-    setLight(newState.light);
   }
 }
 

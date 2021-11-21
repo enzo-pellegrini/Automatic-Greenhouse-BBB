@@ -11,7 +11,7 @@ const BASE_PATH = './executables/';
 
 let readLight = exports.readLight = () => {
 	return new Promise(async (resolve, reject) => {
-		exec(BASE_PATH+'light_sensor.out', (error, stdout, stderr) => {
+		exec(BASE_PATH+'light_sensor', (error, stdout, stderr) => {
 			if (error)
 				reject(error.message);
 			if (stderr != '')
@@ -26,7 +26,8 @@ let readLight = exports.readLight = () => {
 
 let readTempHum = exports.readTempHum = () => {
 	return new Promise(async (resolve, reject) => {
-		exec(BASE_PATH+'temp_umidity.out', (error, stdout, stderr) => {
+		try {
+		exec(BASE_PATH+'temp_humidity', (error, stdout, stderr) => {
 			if(error)
 				reject(error.message);
 			if(stderr != '')
@@ -34,7 +35,7 @@ let readTempHum = exports.readTempHum = () => {
 			resolve(
 				stdout.split(' ').map(s => parseInt(s))
 			);
-		})
+		})} catch { console.log("odda") }
 	})
 }
 

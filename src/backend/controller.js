@@ -6,7 +6,7 @@ let targets = {
 }
 
 const { readLight, readTempHum } = require('./sensors.js');
-const { setWindow, setLight, setHeater, lightMod } = require('./actuators.js');
+const { lightMod , changeActuators } = require('./actuators.js');
 
 const TOLERANCE = 0.1;
 
@@ -42,18 +42,18 @@ let tick = async () => {
 	  }
     if(checkValueIn(temp, targets.temperature) == false){
 		  if(temp > targets.temperature)
-			  setHeater(false)
+			  changeActuators({heater: false});
 		  else
-			  setHeater(true)
+		    changeActuators({heater: true});
 	  }
     if(checkValueIn(hum, targets.humidity) == false){
 		  if(hum > targets.humidity)
-			  setWindow(true)
+		    changeActuators({window: true});
 		  else
-			  setWindow(false)
+		    changeActuators({window: false});
 	  }
   } catch(e) {
-    console.err(e);
+    console.log(e);
   }
 }
 

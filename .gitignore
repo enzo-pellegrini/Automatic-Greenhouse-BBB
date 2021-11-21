@@ -3,3 +3,6 @@ executables
 src/frontend/node_modules
 node_modules/
 public
+*.o
+.svelte-kit
+**/static/styles.css

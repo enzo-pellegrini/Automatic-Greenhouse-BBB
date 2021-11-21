@@ -4,7 +4,7 @@
 #define PATH "/sys/bus/iio/devices/iio:device0/"
 #define FILE_NAME "in_voltage0_raw"
 #define MIN_VAL 500
-#define MAX_VAL 3000
+#define MAX_VAL 1800
 
 #include<iostream>
 #include<fstream>

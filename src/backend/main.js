@@ -4,9 +4,11 @@ const cors = require('cors');
 
 const { api } = require('./api');
 const { readSensors } = require("./sensors")
-const { tickController } = require('./controller')
+const { tickController } = require('./controller');
+const { isManualMode } = require('./manual');
 
-const { currentActuators } = require('./actuators')
+// const { currentActuators } = require('./actuators')
+
 
 
 let app = express()
@@ -30,5 +32,5 @@ server.listen(8700, () => {
   }, 1000);
   console.log('app running');
   
-  setInterval(() => { if (!currentActuators().enabled) { tickController() } }, 5000);
+  setInterval(() => { if (!isManualMode()) { tickController() } }, 5000);
 })

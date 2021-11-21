@@ -1,6 +1,7 @@
 const express = require('express');
 let api = exports.api = express();
-const { changeActuators, currentActuators } = require('./actuators');
+//const { changeActuators, currentActuators } = require('./actuators');
+const { getManualSettings, changeManualSettings } = require('./manual')
 const { currentTargets, changeTargets } = require('./controller')
 const { readSensors } = require('./sensors')
 
@@ -12,11 +13,11 @@ api.get('/sensors', (req, res) => {
 })
 
 api.get('/manual', (req, res) => {
-  res.json(currentActuators())
+  res.json(getManualSettings())
 })
 
 api.post('/manual', (req, res) => {
-  changeActuators(req.body);
+  changeManualSettings(req.body);
   res.status(200).send();
 }) 
 
