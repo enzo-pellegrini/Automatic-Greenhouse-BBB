@@ -6,6 +6,6 @@
     "socket.io": "^4.4.0"
   },
   "scripts": {
-    "start": "node main.js"
+    "start": "node src/backend/main.js"
   }
 }
