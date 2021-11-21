@@ -1,4 +1,10 @@
 <script>
+/* Automatic.svelte
+ * Set of fields to choose the controller targets
+ * By Vincenzo Pellegrini
+ * 313291
+ */
+
 import { onMount } from "svelte";
 import { basePath } from "./variables";
 

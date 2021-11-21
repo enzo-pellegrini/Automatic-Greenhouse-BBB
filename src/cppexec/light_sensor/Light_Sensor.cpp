@@ -1,9 +1,7 @@
 //============================================================================
 // Name        : Servo_Motor.cpp
-// Author      : Spid3rmn
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
+// Author      : Spid3rmn (313301)
+// Description : Module to interact with Light Sensor
 //============================================================================
 
 #include "Light_Sensor.h"

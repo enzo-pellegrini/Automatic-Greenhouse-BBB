@@ -1,3 +1,10 @@
+/*
+ * Actuators.js
+ * Interface between the rest api and the controller and the cpp executables
+ * By Vincenzo Pellegrini and Francesco Palma
+ * 313291 313301
+ */ 
+
 var state = {
   heater: false,
   window: false,

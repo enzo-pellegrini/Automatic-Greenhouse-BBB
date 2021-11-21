@@ -1,3 +1,9 @@
+/*
+ * Controller, periodically sets the actuators based on the sensors
+ * By Francesco Palma
+ * 313301
+ */
+
 let targets = {
   temperature: 20,
   light: 23,

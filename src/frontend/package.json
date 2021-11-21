@@ -1,6 +1,6 @@
 {
-  "name": "webread",
-  "version": "0.0.1",
+  "name": "eos-frontend",
+  "version": "0.0.99",
   "scripts": {
     "dev:only": "svelte-kit dev",
     "build:only": "svelte-kit build",

@@ -1,3 +1,10 @@
+/*
+ * Digital
+ * Library to interact with digital IO, input and output
+ * By Vinenzo Pellegrini
+ * 313291
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

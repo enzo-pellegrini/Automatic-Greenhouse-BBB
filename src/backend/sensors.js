@@ -1,3 +1,10 @@
+/*
+ * Sensors.js
+ * Interface between the rest api and the controller and the cpp executables
+ * By Vincenzo Pellegrini and Francesco Palma
+ * 313291 313301
+*/
+
 const { exec} = require("child_process");
 
 exports.sensors = {

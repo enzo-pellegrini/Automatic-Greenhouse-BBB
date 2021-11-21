@@ -1,3 +1,10 @@
+/*
+ * Manual.js, stateful wrapper of the actuators module, 
+ * to store state even when the manual mode is disabled
+ * By Vincenzo Pellegrini
+ * 313291
+ */
+
 const { changeActuators } = require("./actuators");
 
 var manualSettings = {

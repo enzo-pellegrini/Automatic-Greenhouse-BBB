@@ -1,3 +1,10 @@
+/*
+ * TempHumidity.cpp, to interact with the temperature and humidity sensor
+ * By Vincenzo Pellegrini
+ * 313291
+ */
+
+
 #include "temphumidity.h"
 
 #define ADDRESS 0x27

@@ -1,3 +1,9 @@
+/*
+ * Module to interact with servo module,
+ * by Francesco Palma
+ * 313301
+ */
+
 #include "servo.h"
 #include <cstdlib>
 #include <fstream>

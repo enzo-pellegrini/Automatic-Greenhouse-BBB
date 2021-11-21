@@ -1,3 +1,9 @@
+/*
+ * Pwm.cpp, to interact with pwm led strip
+ * By Vincenzo Pellegrini and Francesco Palma
+ * 313291 313301
+ */
+
 #include "pwm.h"
 #include <cstdlib>
 #include <fstream>

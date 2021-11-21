@@ -1,4 +1,11 @@
 <script>
+/*
+ * Manual.svelte
+ * Set of fields manualy set the actuators' values and wheter that manual mode is enabled
+ * Vincenzo Pellegrini
+ * 313291
+ */
+
 import { onMount } from 'svelte';
 import { basePath } from './variables';
 
