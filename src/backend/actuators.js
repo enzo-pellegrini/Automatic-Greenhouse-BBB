@@ -11,59 +11,58 @@ const { exec } = require("child_process");
 
 
 let setWindow = (value) => {
-    exec(BASE_PATH+'servo.out '+ (value ? 100 : 0), (error, stdout, stderr) => {
-	if(error) {
-		console.log('${error.message}');
-		return;
-	}
+  exec(BASE_PATH+'servo.out '+ (value ? 100 : 0), (error, stdout, stderr) => {
+    if(error) {
+      console.log('${error.message}');
+      return;
+    }
 
-	if(stderr != '') {
-		console.log('${stderr}');
-		return;
-	}
-	
-	console.log(`changing window to ${value}`);
-    });
+    if(stderr != '') {
+      console.log('${stderr}');
+      return;
+    }
+    
+    console.log(`changing window to ${value}`);
+  });
 }
 
 let setLight = (value) => {
-    exec(BASE_PATH+'light_actuator.out '+value, (error, stdout, stderr) => {
-        if(error) {
-	    console.log('${error}');
-	    return;
-	}
-	if(stderr) {
-	    console.log('${stderr}');
-	    return;
-	}
-    });
-    console.log(`changing light to ${value}`);
+  exec(BASE_PATH+'light_actuator.out '+value, (error, stdout, stderr) => {
+    if(error) {
+      console.log('${error}');
+      return;
+    }
+    if(stderr) {
+      console.log('${stderr}');
+      return;
+    }
+  });
+  console.log(`changing light to ${value}`);
 }
 
 
 let lightMod = (mod) => {
 	if (mod > 0) {
 	   state = {...state, light: Math.min(state.light+mod,100)};
-	}
-	else {
+	} else {
 		state = {...state, light: Math.max(state.light+mod, 0)};
 	}
-   setLight(state.light);
+  setLight(state.light);
 	console.log(`called lightMOd with mod ${mod}`);
 }
 
 let setHeater = (value) => {
-    exec(`${BASE_PATH}heater.out ${value?1:0}`, (error, stdout, stderr) => {
-	if(error){
-	    console.log('${error}');
-	    return;
-	}
-	if(stderr){
-	    console.log('${stderr}')
-	}
-	console.log(`changing heater to ${value}`);
-    });
+  exec(`${BASE_PATH}heater.out ${value?1:0}`, (error, stdout, stderr) => {
+    if(error){
+        console.log('${error}');
+        return;
+    }
+    if(stderr){
+        console.log('${stderr}');
+    }
     console.log(`changing heater to ${value}`);
+  });
+  console.log(`changing heater to ${value}`);
 }
 
 let getState = () => { return state }

@@ -21,41 +21,40 @@ let handleChange = (newState) => {
 }
 
 let checkValueIn = (realValue, desiredValue) => {
-    let diff = Math.abs(realValue - desiredValue);
-    let limit = TOLERANCE * desiredValue;
-    return diff < limit;
+  let diff = Math.abs(realValue - desiredValue);
+  let limit = TOLERANCE * desiredValue;
+  return diff < limit;
 }
 
 let tick = async () => {
-    try {
+  try {
     //console.log("Automated control running")
     let [hum, temp] = await readTempHum();
     let light = await readLight();
     if(checkValueIn(light, targets.light) == false) {
 	    console.log(`Read light: ${light}, target light: ${targets.light}`);
-		if(light < targets.light) {
-		        lightMod(+10);
-		}
-		else if (light > targets.light) { 
-			console.log("should decrease light");
-	    		lightMod(-10);
-		}
-	}
+      if(light < targets.light) {
+        lightMod(+10);
+      }
+      else if (light > targets.light) { 
+        lightMod(-10);
+		  }
+	  }
     if(checkValueIn(temp, targets.temperature) == false){
-		if(temp > targets.temperature)
-			setHeater(false)
-		else
-			setHeater(true)
-	}
+		  if(temp > targets.temperature)
+			  setHeater(false)
+		  else
+			  setHeater(true)
+	  }
     if(checkValueIn(hum, targets.humidity) == false){
-		if(hum > targets.humidity)
-			setWindow(true)
-		else
-			setWindow(false)
-	}
-    } catch(e) {
-	    console.err(e);
-    }
+		  if(hum > targets.humidity)
+			  setWindow(true)
+		  else
+			  setWindow(false)
+	  }
+  } catch(e) {
+    console.err(e);
+  }
 }
 
 module.exports = {
