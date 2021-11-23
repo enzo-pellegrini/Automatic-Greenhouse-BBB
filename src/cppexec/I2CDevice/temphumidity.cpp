@@ -1,7 +1,7 @@
 /*
  * TempHumidity.cpp, to interact with the temperature and humidity sensor
- * By Vincenzo Pellegrini
- * 313291
+ * By Vincenzo Pellegrini, Francesco Palma
+ * 313291, 313301
  */
 
 

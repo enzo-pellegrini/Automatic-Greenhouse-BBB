@@ -7,11 +7,6 @@
 
 const { exec} = require("child_process");
 
-exports.sensors = {
-  temperature: 1,
-  humidity: 3,
-  light: 3
-}
 
 const BASE_PATH = './executables/';
 

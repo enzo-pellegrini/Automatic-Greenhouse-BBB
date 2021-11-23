@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : Servo_Motor.cpp
-// Author      : Spid3rmn (313301)
+// Author      : Francesco Palma (313301)
 // Description : Module to interact with Light Sensor
 //============================================================================
 
