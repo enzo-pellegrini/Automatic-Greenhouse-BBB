@@ -6,3 +6,4 @@ public
 *.o
 .svelte-kit
 **/static/styles.css
+slides/*.pdf

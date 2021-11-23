@@ -13,7 +13,107 @@ We wanted to build a simple to use and lightweight interface to get real time fe
 
 ## The general architecture
 
-
+![bg right w:50%](diagram.jpg)
+```
+.
+├── README.md
+├── build.sh
+├── executables
+│   ├── digital
+│   ├── light_sensor
+│   ├── pwm
+│   ├── servo
+│   └── temp_humidity
+├── install_dependencies.sh
+├── package-lock.json
+├── package.json
+├── public
+│   ├── _app
+│   │   ├── assets
+│   │   │   └── start-d5b4de3e.css
+│   │   ├── chunks
+│   │   │   └── vendor-ca25202b.js
+│   │   ├── error.svelte-8cdfd66a.js
+│   │   ├── layout.svelte-ba4c3282.js
+│   │   ├── pages
+│   │   │   └── index.svelte-d9c3b6a9.js
+│   │   └── start-5f41a676.js
+│   ├── favicon.png
+│   ├── index.html
+│   └── styles.css
+├── slides
+│   ├── diagram.jpg
+│   ├── nodesock.png
+│   ├── sveltekit.jpeg
+│   ├── sveltetail.jpg
+│   ├── tailwind.jpeg
+│   ├── test.html
+│   ├── test.md
+│   └── test.pdf
+└── src
+    ├── backend
+    │   ├── actuators.js
+    │   ├── api.js
+    │   ├── controller.js
+    │   ├── main.js
+    │   ├── manual.js
+    │   └── sensors.js
+    ├── cppexec
+    │   ├── I2CDevice
+    │   │   ├── I2CDevice.cpp
+    │   │   ├── I2CDevice.h
+    │   │   ├── main.cpp
+    │   │   ├── makefile
+    │   │   ├── temphumidity.cpp
+    │   │   └── temphumidity.h
+    │   ├── build.sh
+    │   ├── digital
+    │   │   ├── digital.c
+    │   │   ├── digital.h
+    │   │   ├── digital.o
+    │   │   ├── main.c
+    │   │   ├── main.o
+    │   │   └── makefile
+    │   ├── light_sensor
+    │   │   ├── Light_Sensor.cpp
+    │   │   ├── Light_Sensor.h
+    │   │   ├── main.cpp
+    │   │   └── makefile
+    │   ├── pwm
+    │   │   ├── main.cpp
+    │   │   ├── makefile
+    │   │   ├── pwm.cpp
+    │   │   └── pwm.h
+    │   └── servo
+    │       ├── main.cpp
+    │       ├── makefile
+    │       ├── servo.cpp
+    │       └── servo.h
+    └── frontend
+        ├── README.md
+        ├── jsconfig.json
+        ├── package.json
+        ├── postcss.config.cjs
+        ├── src
+        │   ├── app.html
+        │   ├── global.d.ts
+        │   ├── lib
+        │   │   ├── Automatic.svelte
+        │   │   ├── Manual.svelte
+        │   │   ├── Sensors.svelte
+        │   │   ├── stores.js
+        │   │   └── variables.js
+        │   ├── routes
+        │   │   └── index.svelte
+        │   └── styles
+        │       ├── tailwind-output.css
+        │       └── tailwind.css
+        ├── static
+        │   ├── favicon.png
+        │   └── styles.css
+        ├── svelte.config.js
+        └── tailwind.config.cjs
+```
 
 ---
 
@@ -47,16 +147,21 @@ We wrote code to fill some slides
 
 ---
 
-#### From the controller
+#### From the actuators
 ```js
 let handleChange = (newState) => {
-  for (let k in targets) {
-    if (newState[k] != targets[k]) {
-      console.log(`${k} changed to ${newState[k]} in the controller targets`);
-      targets[k] = newState[k]
+  for (let k in newState) {
+    if (newState[k] != state[k]) {
+      console.log(`${k} set to ${newState[k]}`);
+      state[k] = newState[k];
+
+      switch (k) {
+        case 'window': setWindow(state[k]); break;
+        case 'heater': setHeater(state[k]); break;
+        case 'light': setLight(state[k]); break;
+      }
     }
   }
-  targets = newState;
 }
 ```
 
